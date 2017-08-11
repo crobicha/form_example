@@ -18,7 +18,7 @@ import ParticipantTable from './ParticipantTable';
 //    createData('Alice', 18, false, "None", "Type 2", "Not Reviewed"),
 //];
 
-class AppComponent extends React.Component {
+export default class AppComponent extends React.Component {
 
     constructor(props) {
 	super(props);
@@ -41,5 +41,3 @@ class AppComponent extends React.Component {
 	    );
     }
 }
-
-export default AppComponent;

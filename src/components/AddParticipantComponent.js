@@ -126,7 +126,12 @@ class AddParticipantComponent extends Component {
                 fullWidth
               />
             </ListItem>
-          </List>
+	    <ListItem>
+			    <Button color="contrast" onClick={()=>this.handleClose()}>
+	    <CloseIcon />
+	  </Button>
+			    </ListItem></List>
+	  
         </Dialog>
       </div>
     );
