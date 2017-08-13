@@ -1,7 +1,11 @@
 import React from 'react';
-import YeomanImage from './YeomanImage';
+import {connect} from 'react-redux';
+
 import AddParticipantComponent from './AddParticipantComponent';
 import ParticipantTable from './ParticipantTable';
+
+import AddParticipant from '../actions/AddParticipant';
+
 //import './app.css';
 //import 'typeface-roboto'
 
@@ -18,26 +22,52 @@ import ParticipantTable from './ParticipantTable';
 //    createData('Alice', 18, false, "None", "Type 2", "Not Reviewed"),
 //];
 
-export default class AppComponent extends React.Component {
+class AppComponent extends React.Component {
 
     constructor(props) {
 	super(props);
+	
+	//this.state = {participants: {}};
+	
+	const {dispatch} = this.props;
 
-	// Initial state for demo purposes
-	this.state = {
-	    participants: [
-		{name: 'Bob', age: 59, sibling: true, exposure: "None", mutation: "None", status: "Accepted"},
-		{name: 'Jim', age: 30, sibling: true, exposure: "Dust", mutation: "Type 1", status: "Not Accepted"},
-		{name: 'Alice', age: 18, sibling: false, exposure: "None", mutation: "Type 2", status: "Not Reviewed"},
-	    ]};
+ 
+//    console.log("handle submit");
+//    console.log(json);;
+   
+    dispatch(AddParticipant({
+	name: 'Bob', 
+	age: 59, 
+	sibling: true, 
+	exposure: "None", 
+	mutation: "None", 
+	status: "Accepted"}));
+
+	dispatch(AddParticipant({
+	    name: 'Jim', 
+	    age: 30, 
+	    sibling: true, 
+	    exposure: "Dust", 
+	    mutation: "Type 1", 
+	    status: "Not Accepted"}));
+	
+	dispatch(AddParticipant({
+	    name: 'Alice', 
+	    age: 18, 
+	    sibling: false, 
+	    exposure: "X-rays", 
+	    mutation: "Type 2", 
+	    status: "Not Reviewed"}));
     }
 
     render() {
 	return (
 	    <div className="index">
 		<AddParticipantComponent />
-		<ParticipantTable participants={this.state.participants}/>
+		<ParticipantTable />
 	    </div>
 	    );
     }
 }
+
+export default connect() (AppComponent);

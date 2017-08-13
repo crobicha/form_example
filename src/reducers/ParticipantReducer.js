@@ -5,7 +5,9 @@
  */
 import {ADD_PARTICIPANT} from '../actions/const';
 
-const initialState = {};
+const initialState = {
+    participants: []
+};
 
 function reducer(state = initialState, action) {
   /* Keep the reducer clean - do not mutate the original state. */
@@ -16,9 +18,11 @@ function reducer(state = initialState, action) {
     case ADD_PARTICIPANT: {
       // Modify next state depending on the action and return it
       const nextState = Object.assign({}, state);
-      nextState.participants = action.json
-            console.log("nextState");
+      nextState.participants.push(action.json);
+      
+      console.log("nextState");
       console.log(nextState);
+      
       return nextState;
     }
     

@@ -44,9 +44,8 @@ class AddParticipantComponent extends Component {
     // this.handleOpen = ::this.handleOpen();
   }
   
-  handleSubmit (e) {
+  handleSubmit () {
       const {dispatch} = this.props;
-
 
       const json = {
 	  name: this.state.name,
@@ -55,12 +54,10 @@ class AddParticipantComponent extends Component {
 	  mutations: this.state.mutations,
 	  exposure: this.state.exposure
       };
-    console.log("handle submit");
-    console.log(json);
-    
-    // TODO: Update state
-    const action = AddParticipant(json);
-    dispatch(action);
+//    console.log("handle submit");
+//    console.log(json);;
+   
+    dispatch(AddParticipant(json));
 
     this.handleClose();
   }
