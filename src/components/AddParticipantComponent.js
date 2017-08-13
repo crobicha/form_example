@@ -1,6 +1,9 @@
 // @flow weak
 
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+//import {withRouter} from 'react-router'
+
 import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Button from 'material-ui/Button';
@@ -16,7 +19,8 @@ import Slide from 'material-ui/transitions/Slide';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
-
+import AddParticipant from '../actions/AddParticipant';
+// 
 // import './app.css';
 
 const styleSheet = createStyleSheet({
@@ -28,6 +32,7 @@ const styleSheet = createStyleSheet({
   },
 });
 
+@withStyles(styleSheet) 
 class AddParticipantComponent extends Component {
 
   constructor() {
@@ -37,6 +42,27 @@ class AddParticipantComponent extends Component {
     };
     // this.handleRequestClose = ::this.handleRequestClose();
     // this.handleOpen = ::this.handleOpen();
+  }
+  
+  handleSubmit (e) {
+      const {dispatch} = this.props;
+
+
+      const json = {
+	  name: this.state.name,
+	  age: this.state.age,
+	  siblings: this.state.siblings == "checkedC",
+	  mutations: this.state.mutations,
+	  exposure: this.state.exposure
+      };
+    console.log("handle submit");
+    console.log(json);
+    
+    // TODO: Update state
+    const action = AddParticipant(json);
+    dispatch(action);
+
+    this.handleClose();
   }
 
   handleClose () {
@@ -48,7 +74,7 @@ class AddParticipantComponent extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    
     return (
       <div>
         <Button onClick={()=>this.handleOpen()}>Add a new participant</Button>
@@ -59,9 +85,9 @@ class AddParticipantComponent extends Component {
           onRequestClose={()=>this.handleClose()}
           transition={<Slide direction="up" />}
         >
-          <AppBar className={classes.appBar}>
+          <AppBar >
             <Toolbar>
-              <Typography type="title" color="inherit" className={classes.flex}>
+              <Typography type="title" color="inherit" >
                 Add a new participant
               </Typography>
               <Button color="contrast" onClick={()=>this.handleClose()}>
@@ -76,7 +102,7 @@ class AddParticipantComponent extends Component {
               <TextField
                 id="name"
                 label="Name"
-                className={classes.textField}
+             
                 value={this.state.name}
                 onChange={event => this.setState({ name: event.target.value })}
                 margin="normal"
@@ -89,7 +115,7 @@ class AddParticipantComponent extends Component {
                 id="age"
                 label="Age"
                 type="number"
-                className={classes.textField}
+     
                 value={this.state.age}
                 onChange={event => this.setState({ age: event.target.value })}
                 margin="normal"
@@ -107,7 +133,7 @@ class AddParticipantComponent extends Component {
               <TextField
                 id="exposure"
                 label="Known environmental exposures"
-                className={classes.textField}
+
                 value={this.state.exposure}
                 onChange={event => this.setState({ exposure: event.target.value })}
                 margin="normal"
@@ -119,7 +145,7 @@ class AddParticipantComponent extends Component {
               <TextField
                 id="mutations"
                 label="Known genetic mutations"
-                className={classes.textField}
+
                 value={this.state.mutations}
                 onChange={event => this.setState({ mutations: event.target.value })}
                 margin="normal"
@@ -127,19 +153,33 @@ class AddParticipantComponent extends Component {
               />
             </ListItem>
 	    <ListItem>
-			    <Button color="contrast" onClick={()=>this.handleClose()}>
-	    <CloseIcon />
-	  </Button>
-			    </ListItem></List>
+              <Button raised color="primary"
+		      onClick={()=>this.handleSubmit()}>
+		Submit
+	      </Button>
+	    </ListItem>
+	</List>
 	  
         </Dialog>
       </div>
     );
   }
 }
+	       
+	       
+//AddParticipantComponent.propTypes = {
+//  classes: PropTypes.object.isRequired,
+//};
 
-AddParticipantComponent.propTypes = {
-  classes: PropTypes.object.isRequired,
+
+const mapStateToProps = function (store) {
+    console.log(`mapStateToProps ${store}`);
+    return {
+        navigation: store.navigation
+    };
 };
 
-export default withStyles(styleSheet)(AddParticipantComponent);
+//export default Redux.connect(mapStateToProps)(NavigationHeader);
+//withStyles(styleSheet)
+//export default AddParticipantComponent;
+export default connect() (AddParticipantComponent);

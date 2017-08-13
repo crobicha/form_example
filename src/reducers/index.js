@@ -8,10 +8,14 @@
  *          you edit them, they are not updated again.
  */
 /* Populated by react-webpack-redux:reducer */
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux';  // Don't need any reducers yet
+                                          //const reducers = {};
+                                          //const combined = combineReducers(reducers);
+                                          //module.exports = combined;
+import ParticipantReducer from '../reducers/ParticipantReducer.js';
 
-// Don't need any reducers yet
-//const reducers = {};
-//const combined = combineReducers(reducers);
-//module.exports = combined;
-module.exports = () => {};
+
+
+const reducers = {ParticipantReducer:ParticipantReducer}; 
+const combined = combineReducers(reducers); 
+module.exports = combined; 
