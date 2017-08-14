@@ -19,17 +19,16 @@ const styleSheet = createStyleSheet(theme => ({
 
 class ParticipantTable extends React.Component {
 
-    getTableBody(participants) {
+    getTableBody() {
+	const {pr} = this.props;
 	
-	if(participants == null || participants.size == 0) {
+	if(pr.participants == null || pr.participants.size == 0) {
 	    console.log("No data");
 	    return(<span>No data</span>);
 	}
-	else {
-	    
+	else {	    
 	    console.log("participants3");
-	    console.log(participants);
-	    console.log(participants[0]);
+	    console.log(pr.participants);
 	
 	    return(
 		<Table>
@@ -45,7 +44,7 @@ class ParticipantTable extends React.Component {
 		    </TableHead>
 
 		    <TableBody>
-			{participants.map((n) => 	
+			{pr.participants.map((n) => 	
 			    <TableRow key={n.name}>
 			    <TableCell>
 				{n.name}
@@ -75,26 +74,28 @@ class ParticipantTable extends React.Component {
 
     render() {
 	const {participants} = this.props;
-	console.log("participants2");
-	console.log(this.props);
+//	
+	console.log("participants2x");
+	console.log(this.props); 
+	
 
 	return (
 	  <Paper className="paper">
-	      {this.getTableBody(participants)}
+	      {this.getTableBody()}
 	  </Paper>
 	);
     }
 }
 
 function mapStateToProps(state) {
-    console.log("mapStateToProps");
+    console.log("PT mapStateToProps 2");
     console.log(state);
 
-    const props = { participants:state.ParticipantReducer.participants}
-    return props;
+//  participants:state.ParticipantReducer.participants,
+    return { 
+	
+	pr:state.ParticipantReducer
+    };
 }
 
 export default connect(mapStateToProps)(ParticipantTable);
-// ParticipantTable.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
