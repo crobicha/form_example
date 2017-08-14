@@ -19,7 +19,10 @@ import Slide from 'material-ui/transitions/Slide';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import { FormGroup, FormControlLabel } from 'material-ui/Form';
+
+
 import AddParticipant from '../actions/AddParticipant';
+import STATUS_NOT_REVIEWED from '../actions/const';
 // 
 // import './app.css';
 
@@ -31,6 +34,10 @@ const styleSheet = createStyleSheet({
     flex: 1,
   },
 });
+
+const buttonStyle = {
+    backgroundColor: 'lightgrey'
+};
 
 @withStyles(styleSheet) 
 class AddParticipantComponent extends Component {
@@ -52,10 +59,9 @@ class AddParticipantComponent extends Component {
 	  age: this.state.age,
 	  siblings: this.state.siblings == "checkedC",
 	  mutations: this.state.mutations,
-	  exposure: this.state.exposure
+	  exposure: this.state.exposure,
+	  status: STATUS_NOT_REVIEWED
       };
-//    console.log("handle submit");
-//    console.log(json);;
    
     dispatch(AddParticipant(json));
 
@@ -74,7 +80,8 @@ class AddParticipantComponent extends Component {
     
     return (
       <div>
-        <Button onClick={()=>this.handleOpen()}>Add a new participant</Button>
+        <Button onClick={()=>this.handleOpen()}
+	style={buttonStyle}>Add a new participant</Button>
 
         <Dialog
           fullScreen
@@ -94,12 +101,10 @@ class AddParticipantComponent extends Component {
           </AppBar>
 
           <List>
-
             <ListItem>
               <TextField
                 id="name"
                 label="Name"
-             
                 value={this.state.name}
                 onChange={event => this.setState({ name: event.target.value })}
                 margin="normal"
@@ -112,7 +117,6 @@ class AddParticipantComponent extends Component {
                 id="age"
                 label="Age"
                 type="number"
-     
                 value={this.state.age}
                 onChange={event => this.setState({ age: event.target.value })}
                 margin="normal"
@@ -130,7 +134,6 @@ class AddParticipantComponent extends Component {
               <TextField
                 id="exposure"
                 label="Known environmental exposures"
-
                 value={this.state.exposure}
                 onChange={event => this.setState({ exposure: event.target.value })}
                 margin="normal"
@@ -142,7 +145,6 @@ class AddParticipantComponent extends Component {
               <TextField
                 id="mutations"
                 label="Known genetic mutations"
-
                 value={this.state.mutations}
                 onChange={event => this.setState({ mutations: event.target.value })}
                 margin="normal"
@@ -162,11 +164,6 @@ class AddParticipantComponent extends Component {
     );
   }
 }
-	       
-	       
-//AddParticipantComponent.propTypes = {
-//  classes: PropTypes.object.isRequired,
-//};
 
 
 const mapStateToProps = function (store) {
@@ -176,7 +173,4 @@ const mapStateToProps = function (store) {
     };
 };
 
-//export default Redux.connect(mapStateToProps)(NavigationHeader);
-//withStyles(styleSheet)
-//export default AddParticipantComponent;
 export default connect() (AddParticipantComponent);

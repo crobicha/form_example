@@ -10,7 +10,10 @@ import React, {
 } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { AddParticipant } from '../actions/';
+import {
+  AddParticipant,
+  EditParticipant
+} from '../actions/';
 import Main from '../components/App';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
@@ -25,7 +28,10 @@ class App extends Component {
  *       adjust it here.
  */
 App.propTypes = {
-  actions: PropTypes.shape({ AddParticipant: PropTypes.func.isRequired }),
+  actions: PropTypes.shape({
+    AddParticipant: PropTypes.func.isRequired,
+    EditParticipant: PropTypes.func.isRequired
+  }),
   ParticipantReducer: PropTypes.shape({})
 };
 function mapStateToProps(state) {
@@ -36,7 +42,10 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
-  const actions = { AddParticipant };
+  const actions = {
+    AddParticipant,
+    EditParticipant
+  };
   const actionMap = { actions: bindActionCreators(actions, dispatch) };
   return actionMap;
 }

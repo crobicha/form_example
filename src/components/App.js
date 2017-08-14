@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import AddParticipantComponent from './AddParticipantComponent';
 import ParticipantTable from './ParticipantTable';
 import AddParticipant from '../actions/AddParticipant';
+import {STATUS_NOT_REVIEWED} from '../actions/const';
+import {STATUS_REJECTED} from '../actions/const';
+import {STATUS_ACCEPTED} from '../actions/const';
 
 
 class AppComponent extends React.Component {
@@ -20,7 +23,7 @@ class AppComponent extends React.Component {
 	    sibling: true, 
 	    exposure: "None", 
 	    mutation: "None", 
-	    status: "Accepted"}));
+	    status: STATUS_ACCEPTED}));
 
 	dispatch(AddParticipant({
 	    name: 'Jim', 
@@ -28,7 +31,7 @@ class AppComponent extends React.Component {
 	    sibling: true, 
 	    exposure: "Dust", 
 	    mutation: "Type 1", 
-	    status: "Not Accepted"}));
+	    status: STATUS_REJECTED}));
 	
 	dispatch(AddParticipant({
 	    name: 'Alice', 
@@ -36,7 +39,7 @@ class AppComponent extends React.Component {
 	    sibling: false, 
 	    exposure: "X-rays", 
 	    mutation: "Type 2", 
-	    status: "Not Reviewed"}));
+	    status: STATUS_NOT_REVIEWED}));
     }
 
     render() {
