@@ -26,20 +26,20 @@ import STATUS_NOT_REVIEWED from '../actions/const';
 // 
 // import './app.css';
 
-const styleSheet = createStyleSheet({
-  appBar: {
-    position: 'relative',
-  },
-  flex: {
-    flex: 1,
-  },
-});
+//const styleSheet = createStyleSheet({
+//  appBar: {
+//    position: 'relative',
+//  },
+//  flex: {
+//    flex: 1,
+//  },
+//});
 
 const buttonStyle = {
     backgroundColor: 'lightgrey'
 };
 
-@withStyles(styleSheet) 
+//@withStyles(styleSheet) 
 class AddParticipantComponent extends Component {
 
   constructor() {
