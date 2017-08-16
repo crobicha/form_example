@@ -21,22 +21,22 @@ import EditParticipant from '../actions/EditParticipant';
 
 
 
-const styleSheet = createStyleSheet(theme => ({
-  paper: {
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
-  },
-  bgRed: {
-      background: 'red'
-  },
-  bgYellow: {
-      background: 'yellow'
-  },
-  bgGreen: {
-      background: 'green'
-  }
-}));
+//const styleSheet = createStyleSheet(theme => ({
+//  paper: {
+//    width: '100%',
+//    marginTop: theme.spacing.unit * 3,
+//    overflowX: 'auto',
+//  },
+//  bgRed: {
+//      background: 'red'
+//  },
+//  bgYellow: {
+//      background: 'yellow'
+//  },
+//  bgGreen: {
+//      background: 'green'
+//  }
+//}));
 
 
 class ApprovalMenu extends Component {
